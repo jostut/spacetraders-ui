@@ -1,0 +1,57 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Minimal SpaceTraders Fixture",
+    "version": "1.0.0"
+  },
+  "servers": [
+    { "url": "https://api.spacetraders.io/v2" }
+  ],
+  "paths": {
+    "/my/agent": {
+      "get": {
+        "operationId": "getMyAgent",
+        "summary": "Fetch the authenticated agent.",
+        "security": [{ "AgentToken": [] }],
+        "responses": {
+          "200": {
+            "description": "The authenticated agent.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": { "$ref": "#/components/schemas/Agent" }
+                  },
+                  "required": ["data"]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "AgentToken": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    },
+    "schemas": {
+      "Agent": {
+        "type": "object",
+        "properties": {
+          "accountId": { "type": "string" },
+          "symbol": { "type": "string" },
+          "headquarters": { "type": "string" },
+          "credits": { "type": "integer", "format": "int64" },
+          "startingFaction": { "type": "string" },
+          "shipCount": { "type": "integer" }
+        },
+        "required": ["symbol", "headquarters", "credits", "startingFaction", "shipCount"]
+      }
+    }
+  }
+}

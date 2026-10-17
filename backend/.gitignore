@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.hypothesis/
+*.egg-info/
+
+# Cached, pinned openapi-generator-cli JAR (downloaded by generate-client).
+.tools/
