@@ -8,6 +8,7 @@ from __future__ import annotations
 
 from fastapi import FastAPI
 
+from app.health_handler import router as health_router
 from app.login_handler import router as login_router
 
 
@@ -22,6 +23,7 @@ def create_app() -> FastAPI:
         return {"status": "ok"}
 
     app.include_router(login_router)
+    app.include_router(health_router)
     return app
 
 

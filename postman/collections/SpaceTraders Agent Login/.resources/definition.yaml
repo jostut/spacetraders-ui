@@ -1,5 +1,4 @@
 $kind: collection
-name: SpaceTraders Agent Login
 description: |-
   API collection for the SpaceTraders Agent Login backend (FastAPI, served on
   http://127.0.0.1:8000 by default).
@@ -11,6 +10,5 @@ description: |-
   Set the `base_url` and `agent_token` variables in the "Local Development"
   environment before sending requests.
 variables:
-  - key: base_url
-    value: 'http://127.0.0.1:8000'
-    description: 'Base URL of the backend server'
+  base_url: http://127.0.0.1:8000
+  agent_symbol: ""

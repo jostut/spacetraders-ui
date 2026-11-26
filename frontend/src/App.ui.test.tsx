@@ -50,6 +50,20 @@ function jsonResponse(body: unknown, status: number): Response {
   });
 }
 
+/**
+ * Stub global fetch so health-check requests (`/health...`) succeed and are
+ * not seen by the login spy; all other requests go to `loginFetch`.
+ */
+function stubFetch(loginFetch: typeof fetch): void {
+  vi.stubGlobal('fetch', ((input: RequestInfo | URL, init?: RequestInit) => {
+    const url = typeof input === 'string' ? input : input.toString();
+    if (url.startsWith('/health')) {
+      return Promise.resolve(jsonResponse({ status: 'ok' }, 200));
+    }
+    return loginFetch(input, init);
+  }) as typeof fetch);
+}
+
 afterEach(() => {
   vi.unstubAllGlobals();
   vi.restoreAllMocks();
@@ -59,7 +73,7 @@ describe('UI behavior - initial render with no active session (Requirement 1.1)'
   it('renders a single token input and a submit control, and no agent details', () => {
     // No request will be made, but stub fetch so an accidental call is visible.
     const fetchSpy = vi.fn<typeof fetch>();
-    vi.stubGlobal('fetch', fetchSpy);
+    stubFetch(fetchSpy);
 
     render(<App />);
 
@@ -95,7 +109,7 @@ describe('UI behavior - loading state while a request is pending (Requirement 1.
       resolveFetch = resolve;
     });
     const fetchSpy = vi.fn<typeof fetch>().mockReturnValue(pending);
-    vi.stubGlobal('fetch', fetchSpy);
+    stubFetch(fetchSpy);
 
     render(<App />);
 
@@ -108,8 +122,8 @@ describe('UI behavior - loading state while a request is pending (Requirement 1.
     await user.click(submit);
 
     // While the request is pending: loading indicator visible, submit disabled.
-    const status = await screen.findByRole('status');
-    expect(status).toHaveTextContent('Logging in…');
+    const status = await screen.findByText('Logging in…');
+    expect(status).toBeInTheDocument();
     expect(submit).toBeDisabled();
 
     // Resolve the request to let the hook settle and avoid an open handle.
@@ -120,7 +134,7 @@ describe('UI behavior - loading state while a request is pending (Requirement 1.
 
     // After settling, the loading indicator is gone.
     await waitFor(() => {
-      expect(screen.queryByRole('status')).toBeNull();
+      expect(screen.queryByText('Logging in…')).toBeNull();
     });
   });
 });
@@ -146,7 +160,7 @@ describe('UI behavior - client timeout at 10s (Requirement 3.4)', () => {
           });
         }),
     );
-    vi.stubGlobal('fetch', fetchSpy);
+    stubFetch(fetchSpy);
 
     render(<App />);
 
@@ -243,7 +257,7 @@ describe('UI behavior - error kind message mapping and token preservation (Requi
     it(testCase.name, async () => {
       const user = userEvent.setup();
       const fetchSpy = testCase.makeFetch();
-      vi.stubGlobal('fetch', fetchSpy);
+      stubFetch(fetchSpy);
 
       render(<App />);
 

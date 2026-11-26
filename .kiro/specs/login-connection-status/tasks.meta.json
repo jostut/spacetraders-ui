@@ -1,0 +1,280 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "1.1 Create `backend/app/spacetraders_status_adapter.py`": [
+      {
+        "executionId": "c938bfd3-37be-4188-9672-c95d4621d707",
+        "chatSessionId": "sess_8301415c-0808-4880-ac1d-dd2a04a72fb3",
+        "timestamp": 1795659269126
+      },
+      {
+        "executionId": "c938bfd3-37be-4188-9672-c95d4621d707",
+        "chatSessionId": "sess_8301415c-0808-4880-ac1d-dd2a04a72fb3",
+        "timestamp": 1795659273069
+      },
+      {
+        "executionId": "c938bfd3-37be-4188-9672-c95d4621d707",
+        "chatSessionId": "sess_8301415c-0808-4880-ac1d-dd2a04a72fb3",
+        "timestamp": 1795659306987
+      }
+    ],
+    "1.2 Create `backend/app/health_handler.py` and register it in `create_app()` in `main.py`": [
+      {
+        "executionId": "c938bfd3-37be-4188-9672-c95d4621d707",
+        "chatSessionId": "sess_8301415c-0808-4880-ac1d-dd2a04a72fb3",
+        "timestamp": 1795659269207
+      },
+      {
+        "executionId": "c938bfd3-37be-4188-9672-c95d4621d707",
+        "chatSessionId": "sess_8301415c-0808-4880-ac1d-dd2a04a72fb3",
+        "timestamp": 1795659311610
+      },
+      {
+        "executionId": "c938bfd3-37be-4188-9672-c95d4621d707",
+        "chatSessionId": "sess_8301415c-0808-4880-ac1d-dd2a04a72fb3",
+        "timestamp": 1795659351649
+      }
+    ],
+    "2. Checkpoint - Ensure all tests pass": [
+      {
+        "executionId": "c938bfd3-37be-4188-9672-c95d4621d707",
+        "chatSessionId": "sess_8301415c-0808-4880-ac1d-dd2a04a72fb3",
+        "timestamp": 1795659269275
+      },
+      {
+        "executionId": "c938bfd3-37be-4188-9672-c95d4621d707",
+        "chatSessionId": "sess_8301415c-0808-4880-ac1d-dd2a04a72fb3",
+        "timestamp": 1795659403696
+      },
+      {
+        "executionId": "c938bfd3-37be-4188-9672-c95d4621d707",
+        "chatSessionId": "sess_8301415c-0808-4880-ac1d-dd2a04a72fb3",
+        "timestamp": 1795659461665
+      }
+    ],
+    "3.1 Create `src/hooks/useHealthCheck.ts`": [
+      {
+        "executionId": "c938bfd3-37be-4188-9672-c95d4621d707",
+        "chatSessionId": "sess_8301415c-0808-4880-ac1d-dd2a04a72fb3",
+        "timestamp": 1795659269328
+      },
+      {
+        "executionId": "c938bfd3-37be-4188-9672-c95d4621d707",
+        "chatSessionId": "sess_8301415c-0808-4880-ac1d-dd2a04a72fb3",
+        "timestamp": 1795659273857
+      },
+      {
+        "executionId": "c938bfd3-37be-4188-9672-c95d4621d707",
+        "chatSessionId": "sess_8301415c-0808-4880-ac1d-dd2a04a72fb3",
+        "timestamp": 1795659308212
+      }
+    ],
+    "3.3 Create `src/components/ConnectionStatus.tsx`": [
+      {
+        "executionId": "c938bfd3-37be-4188-9672-c95d4621d707",
+        "chatSessionId": "sess_8301415c-0808-4880-ac1d-dd2a04a72fb3",
+        "timestamp": 1795659269397
+      },
+      {
+        "executionId": "c938bfd3-37be-4188-9672-c95d4621d707",
+        "chatSessionId": "sess_8301415c-0808-4880-ac1d-dd2a04a72fb3",
+        "timestamp": 1795659274315
+      },
+      {
+        "executionId": "c938bfd3-37be-4188-9672-c95d4621d707",
+        "chatSessionId": "sess_8301415c-0808-4880-ac1d-dd2a04a72fb3",
+        "timestamp": 1795659307776
+      }
+    ],
+    "4.1 Modify `App.tsx` and `vite.config.ts`": [
+      {
+        "executionId": "c938bfd3-37be-4188-9672-c95d4621d707",
+        "chatSessionId": "sess_8301415c-0808-4880-ac1d-dd2a04a72fb3",
+        "timestamp": 1795659269449
+      },
+      {
+        "executionId": "c938bfd3-37be-4188-9672-c95d4621d707",
+        "chatSessionId": "sess_8301415c-0808-4880-ac1d-dd2a04a72fb3",
+        "timestamp": 1795659355149
+      },
+      {
+        "executionId": "c938bfd3-37be-4188-9672-c95d4621d707",
+        "chatSessionId": "sess_8301415c-0808-4880-ac1d-dd2a04a72fb3",
+        "timestamp": 1795659401814
+      }
+    ],
+    "5. Final checkpoint - Ensure all tests pass": [
+      {
+        "executionId": "c938bfd3-37be-4188-9672-c95d4621d707",
+        "chatSessionId": "sess_8301415c-0808-4880-ac1d-dd2a04a72fb3",
+        "timestamp": 1795659269500
+      },
+      {
+        "executionId": "c938bfd3-37be-4188-9672-c95d4621d707",
+        "chatSessionId": "sess_8301415c-0808-4880-ac1d-dd2a04a72fb3",
+        "timestamp": 1795659462098
+      },
+      {
+        "executionId": "c938bfd3-37be-4188-9672-c95d4621d707",
+        "chatSessionId": "sess_8301415c-0808-4880-ac1d-dd2a04a72fb3",
+        "timestamp": 1795659482855
+      }
+    ],
+    "3. Implement frontend health check hook and indicator": [
+      {
+        "executionId": "c938bfd3-37be-4188-9672-c95d4621d707",
+        "chatSessionId": "sess_8301415c-0808-4880-ac1d-dd2a04a72fb3",
+        "timestamp": 1795659308265
+      }
+    ],
+    "1. Implement backend SpaceTraders health endpoint": [
+      {
+        "executionId": "c938bfd3-37be-4188-9672-c95d4621d707",
+        "chatSessionId": "sess_8301415c-0808-4880-ac1d-dd2a04a72fb3",
+        "timestamp": 1795659351720
+      }
+    ],
+    "4. Wire indicators into the login page": [
+      {
+        "executionId": "c938bfd3-37be-4188-9672-c95d4621d707",
+        "chatSessionId": "sess_8301415c-0808-4880-ac1d-dd2a04a72fb3",
+        "timestamp": 1795659401883
+      }
+    ],
+    "1.4 Write unit tests for the endpoint and adapter": [
+      {
+        "executionId": "03a1670b-1d40-4f84-b8a6-41752135839d",
+        "chatSessionId": "sess_afe410fb-ce4c-4502-b95f-9da263dd1bbc",
+        "timestamp": 1795662398929
+      },
+      {
+        "executionId": "03a1670b-1d40-4f84-b8a6-41752135839d",
+        "chatSessionId": "sess_afe410fb-ce4c-4502-b95f-9da263dd1bbc",
+        "timestamp": 1795662426520
+      }
+    ],
+    "4.4 Write unit tests for App indicators": [
+      {
+        "executionId": "3ec04960-27c1-48e0-ae1f-9916cfe0e33d",
+        "chatSessionId": "sess_864363a0-b816-4fee-84f8-3e446bda07fd",
+        "timestamp": 1795662447304
+      },
+      {
+        "executionId": "3ec04960-27c1-48e0-ae1f-9916cfe0e33d",
+        "chatSessionId": "sess_864363a0-b816-4fee-84f8-3e446bda07fd",
+        "timestamp": 1795662478397
+      }
+    ],
+    "6.1 Update `src/components/ConnectionStatus.tsx` and its stylesheet": [
+      {
+        "executionId": "f13b4a51-5840-4ae3-ac73-b6007eb1827e",
+        "chatSessionId": "sess_8301415c-0808-4880-ac1d-dd2a04a72fb3",
+        "timestamp": 1795662936825
+      },
+      {
+        "executionId": "f13b4a51-5840-4ae3-ac73-b6007eb1827e",
+        "chatSessionId": "sess_8301415c-0808-4880-ac1d-dd2a04a72fb3",
+        "timestamp": 1795662939152
+      },
+      {
+        "executionId": "f13b4a51-5840-4ae3-ac73-b6007eb1827e",
+        "chatSessionId": "sess_8301415c-0808-4880-ac1d-dd2a04a72fb3",
+        "timestamp": 1795663026196
+      }
+    ],
+    "7. Final checkpoint - Ensure all tests pass": [
+      {
+        "executionId": "f13b4a51-5840-4ae3-ac73-b6007eb1827e",
+        "chatSessionId": "sess_8301415c-0808-4880-ac1d-dd2a04a72fb3",
+        "timestamp": 1795662937034
+      },
+      {
+        "executionId": "f13b4a51-5840-4ae3-ac73-b6007eb1827e",
+        "chatSessionId": "sess_8301415c-0808-4880-ac1d-dd2a04a72fb3",
+        "timestamp": 1795663035441
+      },
+      {
+        "executionId": "f13b4a51-5840-4ae3-ac73-b6007eb1827e",
+        "chatSessionId": "sess_8301415c-0808-4880-ac1d-dd2a04a72fb3",
+        "timestamp": 1795663066914
+      }
+    ],
+    "6.3 Write unit test for reduced-motion rule": [
+      {
+        "executionId": "7ed7f294-f1b9-4bca-8546-ae8d39bb27a0",
+        "chatSessionId": "sess_4153cd76-75bf-42e8-a04a-d3abf7365850",
+        "timestamp": 1795663125837
+      },
+      {
+        "executionId": "7ed7f294-f1b9-4bca-8546-ae8d39bb27a0",
+        "chatSessionId": "sess_4153cd76-75bf-42e8-a04a-d3abf7365850",
+        "timestamp": 1795663190249
+      }
+    ],
+    "6. Replace grey checking dot with a spinner in ConnectionStatus.tsx": [
+      {
+        "executionId": "7ed7f294-f1b9-4bca-8546-ae8d39bb27a0",
+        "chatSessionId": "sess_4153cd76-75bf-42e8-a04a-d3abf7365850",
+        "timestamp": 1795663190364
+      }
+    ],
+    "8.1 Modify `src/App.tsx` to render the indicators only on the login form view": [
+      {
+        "executionId": "b4fdccb2-ec8c-4203-8249-c72d5e6f02cc",
+        "chatSessionId": "sess_8301415c-0808-4880-ac1d-dd2a04a72fb3",
+        "timestamp": 1795663968609
+      },
+      {
+        "executionId": "b4fdccb2-ec8c-4203-8249-c72d5e6f02cc",
+        "chatSessionId": "sess_8301415c-0808-4880-ac1d-dd2a04a72fb3",
+        "timestamp": 1795663970738
+      },
+      {
+        "executionId": "b4fdccb2-ec8c-4203-8249-c72d5e6f02cc",
+        "chatSessionId": "sess_8301415c-0808-4880-ac1d-dd2a04a72fb3",
+        "timestamp": 1795663992132
+      }
+    ],
+    "8.3 Write unit test for post-login hiding": [
+      {
+        "executionId": "b4fdccb2-ec8c-4203-8249-c72d5e6f02cc",
+        "chatSessionId": "sess_8301415c-0808-4880-ac1d-dd2a04a72fb3",
+        "timestamp": 1795663968748
+      },
+      {
+        "executionId": "b4fdccb2-ec8c-4203-8249-c72d5e6f02cc",
+        "chatSessionId": "sess_8301415c-0808-4880-ac1d-dd2a04a72fb3",
+        "timestamp": 1795663994169
+      },
+      {
+        "executionId": "b4fdccb2-ec8c-4203-8249-c72d5e6f02cc",
+        "chatSessionId": "sess_8301415c-0808-4880-ac1d-dd2a04a72fb3",
+        "timestamp": 1795664156912
+      }
+    ],
+    "9. Final checkpoint - Ensure all tests pass": [
+      {
+        "executionId": "b4fdccb2-ec8c-4203-8249-c72d5e6f02cc",
+        "chatSessionId": "sess_8301415c-0808-4880-ac1d-dd2a04a72fb3",
+        "timestamp": 1795663968859
+      },
+      {
+        "executionId": "b4fdccb2-ec8c-4203-8249-c72d5e6f02cc",
+        "chatSessionId": "sess_8301415c-0808-4880-ac1d-dd2a04a72fb3",
+        "timestamp": 1795664157324
+      },
+      {
+        "executionId": "b4fdccb2-ec8c-4203-8249-c72d5e6f02cc",
+        "chatSessionId": "sess_8301415c-0808-4880-ac1d-dd2a04a72fb3",
+        "timestamp": 1795664191311
+      }
+    ],
+    "8. Hide indicators after login in App.tsx": [
+      {
+        "executionId": "b4fdccb2-ec8c-4203-8249-c72d5e6f02cc",
+        "chatSessionId": "sess_8301415c-0808-4880-ac1d-dd2a04a72fb3",
+        "timestamp": 1795664157017
+      }
+    ]
+  }
+}

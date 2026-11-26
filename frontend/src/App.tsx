@@ -2,6 +2,8 @@ import { useLogin } from './hooks/useLogin';
 import { LoginForm } from './components/LoginForm';
 import { AgentDetails } from './components/AgentDetails';
 import { ErrorBanner } from './components/ErrorBanner';
+import { ConnectionStatus } from './components/ConnectionStatus';
+import { useHealthCheck } from './hooks/useHealthCheck';
 
 /**
  * App shell. Wires the `useLogin` hook to the UI components (task 7.7).
@@ -20,11 +22,19 @@ import { ErrorBanner } from './components/ErrorBanner';
  */
 export function App() {
   const login = useLogin();
+  const backendHealth = useHealthCheck('/health');
+  const spacetradersHealth = useHealthCheck('/health/spacetraders');
   const showAgentDetails = login.status === 'success' && login.agent !== null;
 
   return (
     <main>
       <h1>SpaceTraders</h1>
+      {!showAgentDetails && (
+        <>
+          <ConnectionStatus label="Backend API" state={backendHealth} />
+          <ConnectionStatus label="SpaceTraders v2 API" state={spacetradersHealth} />
+        </>
+      )}
       {login.error !== null && (
         <ErrorBanner error={login.error} onRetry={login.retry} />
       )}
