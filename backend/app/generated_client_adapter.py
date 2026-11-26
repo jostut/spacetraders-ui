@@ -26,6 +26,8 @@ the generated tree, and a missing client surfaces as a normalized *upstream*
 from __future__ import annotations
 
 import importlib
+import sys
+from pathlib import Path
 from typing import Any, Optional
 
 from app.classify_error import FailureOutcome
@@ -33,9 +35,15 @@ from app.classify_error import FailureOutcome
 # The upstream call deadline, in seconds (Requirement 2.5 / design decision).
 REQUEST_TIMEOUT_SECONDS: float = 10.0
 
-# Import path of the generated client package (see scripts/generate_client.py:
-# ``packageName=spacetraders_client`` generated into ``app/generated``).
-_GENERATED_PACKAGE = "app.generated.spacetraders_client"
+# The generated client is emitted by ``make generate-client`` into
+# ``app/generated/spacetraders_client`` as a self-contained package whose own
+# modules use absolute imports rooted at its top-level package name
+# ``spacetraders_client`` (``packageName=spacetraders_client``). To import it we
+# add ``app/generated`` to ``sys.path`` and import that top-level name, rather
+# than importing it as ``app.generated.spacetraders_client`` (which would break
+# the generated code's internal absolute imports).
+_GENERATED_PACKAGE = "spacetraders_client"
+_GENERATED_ROOT = Path(__file__).resolve().parent / "generated"
 
 
 class GeneratedClientUnavailable(RuntimeError):
@@ -53,12 +61,20 @@ def _import_generated() -> Any:
     been produced yet (``make generate-client``) so the caller can normalize it
     into an upstream failure instead of crashing.
     """
+    if not (_GENERATED_ROOT / _GENERATED_PACKAGE).is_dir():
+        raise GeneratedClientUnavailable(
+            "the generated SpaceTraders client is not available; "
+            "run `make generate-client`"
+        )
+    root = str(_GENERATED_ROOT)
+    if root not in sys.path:
+        sys.path.insert(0, root)
     try:
         return importlib.import_module(_GENERATED_PACKAGE)
     except ImportError as exc:  # ModuleNotFoundError is a subclass
         raise GeneratedClientUnavailable(
-            "the generated SpaceTraders client is not available; "
-            "run `make generate-client`"
+            "the generated SpaceTraders client could not be imported; "
+            "re-run `make generate-client`"
         ) from exc
 
 

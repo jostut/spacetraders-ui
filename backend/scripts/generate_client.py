@@ -7,8 +7,10 @@ This is the single, cross-platform implementation behind the
 
 What it does (Requirement 6):
 
-* Fetches the SpaceTraders OpenAPI specification (6.1), or uses a spec passed
-  via ``--spec`` (used by the smoke / integration tests with fixtures).
+* Fetches the SpaceTraders OpenAPI specification as a pinned multi-file repo
+  archive and generates from its ``reference/SpaceTraders.json`` entry point
+  (6.1), or uses a spec passed via ``--spec`` (a local path or a single-file
+  URL; used by the smoke / integration tests with fixtures).
 * Runs the pinned ``openapi-generator-cli`` with the ``python`` generator and a
   fixed set of options so output is reproducible across machines and time
   (6.1, 6.2, 6.5).
@@ -28,6 +30,7 @@ import os
 import shutil
 import subprocess
 import sys
+import tarfile
 import tempfile
 import urllib.error
 import urllib.request
@@ -47,7 +50,22 @@ OPENAPI_GENERATOR_JAR_URL = (
 )
 
 # The official SpaceTraders OpenAPI specification (Requirement 6.1).
-DEFAULT_SPEC_URL = "https://stoplight.io/api/v1/projects/spacetraders/spacetraders/nodes/reference/SpaceTraders.json"
+#
+# The spec is published as a *multi-file* document: reference/SpaceTraders.json
+# uses relative $refs to sibling files under models/ (e.g.
+# ``../models/FactionSymbol.json``). A single downloaded file therefore cannot
+# resolve those refs, so we fetch the whole api-docs repository as a pinned
+# source archive and run the generator against the local reference entry point,
+# letting the relative refs resolve from the extracted ``models/`` directory.
+#
+# Pinned to a specific commit so generation is reproducible over time (6.5).
+SPEC_REPO_TARBALL_URL = (
+    "https://codeload.github.com/SpaceTradersAPI/api-docs/tar.gz/"
+    "45fbb04130aca3fa0bd9a634ab77b35fa6c468ab"
+)
+# The entry-point spec path *inside* the extracted archive, relative to the
+# single top-level directory the GitHub tarball unpacks into.
+SPEC_ENTRYPOINT_IN_ARCHIVE = "reference/SpaceTraders.json"
 
 # Generator identity and pinned options (Requirement 6.1, 6.5).
 GENERATOR_NAME = "python"
@@ -122,30 +140,103 @@ def _ensure_generator_jar() -> Path:
 
 
 def _resolve_spec(spec: str | None, workdir: Path) -> str:
-    """Return a local path or URL for the generator to consume.
+    """Return a local spec path for the generator to consume.
 
-    If ``spec`` is a local path, it is used directly. If it is a URL (or the
-    default remote spec), it is downloaded into ``workdir`` so the generator
-    reads from a stable local file and so a fetch failure is reported clearly.
+    Three cases:
+
+    * ``spec`` is ``None`` (the default): the pinned SpaceTraders api-docs
+      repository archive is downloaded and extracted into ``workdir``, and the
+      path to its ``reference/SpaceTraders.json`` entry point is returned. The
+      sibling ``models/`` directory travels with it, so the relative ``$ref``s
+      in the spec resolve from disk.
+    * ``spec`` is an ``http(s)`` URL: it is downloaded as a single file (used by
+      callers that already have a self-contained/bundled spec).
+    * ``spec`` is a local path: it is used directly (used by the smoke /
+      integration tests with fixture specs).
     """
-    source = spec or DEFAULT_SPEC_URL
-    # Treat anything that looks like a URL as remote; otherwise a local path.
-    if source.startswith(("http://", "https://")):
+    if spec is None:
+        return _fetch_spec_repo(workdir)
+
+    # Explicit single-file URL (self-contained/bundled spec).
+    if spec.startswith(("http://", "https://")):
         dest = workdir / "openapi-spec.json"
-        print(f"Fetching OpenAPI spec from {source} ...")
+        print(f"Fetching OpenAPI spec from {spec} ...")
         try:
-            with urllib.request.urlopen(source) as resp, open(dest, "wb") as out:
+            with urllib.request.urlopen(spec) as resp, open(dest, "wb") as out:
                 shutil.copyfileobj(resp, out)
         except urllib.error.URLError as exc:
             raise InvalidSpecError(
-                f"could not fetch the OpenAPI spec from {source}: {exc}"
+                f"could not fetch the OpenAPI spec from {spec}: {exc}"
             ) from exc
         return str(dest)
 
-    local = Path(source)
+    local = Path(spec)
     if not local.exists():
-        raise InvalidSpecError(f"spec file does not exist: {source}")
+        raise InvalidSpecError(f"spec file does not exist: {spec}")
     return str(local)
+
+
+def _fetch_spec_repo(workdir: Path) -> str:
+    """Download + extract the pinned api-docs archive; return the spec path.
+
+    The GitHub tarball unpacks into a single top-level directory
+    (``api-docs-<sha>/``). We extract under ``workdir`` and locate the pinned
+    ``reference/SpaceTraders.json`` entry point beneath it. A download or
+    extraction failure, or a missing entry point, is reported as an
+    ``InvalidSpecError`` so the caller aborts without touching the existing
+    client (6.3).
+    """
+    archive = workdir / "api-docs.tar.gz"
+    extract_root = workdir / "spec-repo"
+    print(f"Fetching OpenAPI spec repository from {SPEC_REPO_TARBALL_URL} ...")
+    try:
+        with urllib.request.urlopen(SPEC_REPO_TARBALL_URL) as resp, open(
+            archive, "wb"
+        ) as out:
+            shutil.copyfileobj(resp, out)
+    except urllib.error.URLError as exc:
+        raise InvalidSpecError(
+            f"could not fetch the SpaceTraders api-docs archive: {exc}"
+        ) from exc
+
+    extract_root.mkdir(parents=True, exist_ok=True)
+    try:
+        with tarfile.open(archive, "r:gz") as tar:
+            _safe_extract(tar, extract_root)
+    except (tarfile.TarError, OSError) as exc:
+        raise InvalidSpecError(
+            f"could not extract the SpaceTraders api-docs archive: {exc}"
+        ) from exc
+
+    # The tarball contains exactly one top-level directory (api-docs-<sha>/).
+    top_dirs = [d for d in extract_root.iterdir() if d.is_dir()]
+    if len(top_dirs) != 1:
+        raise InvalidSpecError(
+            "unexpected api-docs archive layout: expected a single top-level "
+            f"directory, found {len(top_dirs)}"
+        )
+    entry = top_dirs[0] / SPEC_ENTRYPOINT_IN_ARCHIVE
+    if not entry.exists():
+        raise InvalidSpecError(
+            f"spec entry point not found in archive: {SPEC_ENTRYPOINT_IN_ARCHIVE}"
+        )
+    return str(entry)
+
+
+def _safe_extract(tar: tarfile.TarFile, dest: Path) -> None:
+    """Extract ``tar`` into ``dest``, rejecting entries that escape ``dest``.
+
+    Guards against path-traversal in archive member names (``..`` / absolute
+    paths) so a malicious or malformed archive cannot write outside ``dest``.
+    """
+    dest = dest.resolve()
+    for member in tar.getmembers():
+        target = (dest / member.name).resolve()
+        if dest != target and dest not in target.parents:
+            raise InvalidSpecError(
+                f"archive member escapes extraction directory: {member.name!r}"
+            )
+    tar.extractall(dest)
 
 
 def _swap_into_place(generated: Path, output: Path) -> None:
@@ -251,8 +342,9 @@ def main(argv: list[str] | None = None) -> int:
         "--spec",
         default=None,
         help=(
-            "OpenAPI spec URL or local file path. Defaults to the official "
-            "SpaceTraders specification."
+            "OpenAPI spec: a local file path or a single-file http(s) URL. When "
+            "omitted, the pinned SpaceTraders api-docs repository archive is "
+            "fetched and its reference/SpaceTraders.json entry point is used."
         ),
     )
     parser.add_argument(

@@ -1,0 +1,7 @@
+# Use this workspace to collaborate
+workspace:
+  id: 192b7dcf-4891-4bf5-ac0b-6add0b0a9318
+
+localResources:
+  specs:
+    - ../backend/tests/fixtures/valid_minimal_openapi.json

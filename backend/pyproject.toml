@@ -7,6 +7,9 @@ dependencies = [
     "fastapi==0.115.6",
     "uvicorn[standard]==0.34.0",
     "urllib3==2.3.0",
+    # Runtime deps of the generated SpaceTraders client.
+    "python-dateutil==2.9.0.post0",
+    "typing-extensions==4.16.0",
 ]
 
 [project.optional-dependencies]
