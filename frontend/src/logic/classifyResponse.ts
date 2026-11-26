@@ -26,11 +26,15 @@ export const LOGIN_ERROR_MESSAGES = {
  *   response was received (e.g. a network failure or client-side timeout).
  * @param networkError `true` when the backend could not be reached or the
  *   client aborted the request before a response arrived.
+ * @param upstreamMessage Optional message from the backend error envelope. For a
+ *   401 it is appended so the SpaceTraders API's explanation (e.g. that the token
+ *   may be an account token) is shown.
  * @returns the LoginError whose kind and exact message match the outcome.
  */
 export function classifyResponse(
   status: number | null,
   networkError: boolean,
+  upstreamMessage?: string,
 ): LoginError {
   // Backend unreachable or client-side timeout: no usable status code.
   if (networkError) {
@@ -44,7 +48,9 @@ export function classifyResponse(
     case 401:
       return {
         kind: "token-invalid",
-        message: LOGIN_ERROR_MESSAGES["token-invalid"],
+        message: upstreamMessage
+          ? `${LOGIN_ERROR_MESSAGES["token-invalid"]} ${upstreamMessage}`
+          : LOGIN_ERROR_MESSAGES["token-invalid"],
       };
     case 502:
     case 504:

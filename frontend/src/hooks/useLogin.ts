@@ -86,7 +86,18 @@ export function useLogin(): UseLogin {
 
         // Non-2xx: map the HTTP status to a user-facing error. Preserve token.
         setAgent(null);
-        setError(classifyResponse(response.status, false));
+        let upstreamMessage: string | undefined;
+        if (response.status === 401) {
+          try {
+            const body = (await response.json()) as {
+              error?: { detail?: string };
+            };
+            upstreamMessage = body.error?.detail;
+          } catch {
+            // Body missing or not JSON: fall back to the generic message.
+          }
+        }
+        setError(classifyResponse(response.status, false, upstreamMessage));
         setStatus("error");
       } catch (err) {
         // Two distinct no-response outcomes land here. Preserve token in both.

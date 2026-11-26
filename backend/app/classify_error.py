@@ -135,6 +135,20 @@ def _kind_for(outcome: Any) -> ErrorKind:
     return "upstream"
 
 
+def upstream_detail(outcome: Any, token: str = "") -> Optional[str]:
+    """Return the SpaceTraders API's own auth-failure message, token-scrubbed.
+
+    Only meaningful for authentication failures (e.g. the API explaining that
+    the token may be an account token). ``None`` when absent.
+    """
+    if _kind_for(outcome) != "authentication":
+        return None
+    detail = getattr(outcome, "detail", None)
+    if isinstance(detail, str) and detail.strip():
+        return _scrub_token(detail.strip(), token)
+    return None
+
+
 def classify_error(outcome: Any, token: str = "") -> Tuple[int, ErrorKind, str]:
     """Classify an upstream failure into ``(status, kind, message)``.
 

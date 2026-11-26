@@ -26,6 +26,7 @@ the generated tree, and a missing client surfaces as a normalized *upstream*
 from __future__ import annotations
 
 import importlib
+import json
 import sys
 from pathlib import Path
 from typing import Any, Optional
@@ -252,6 +253,17 @@ def _invoke_with_timeout(operation: Any) -> Any:
         return operation()
 
 
+def _upstream_message(exc: BaseException) -> Optional[str]:
+    """Extract ``error.message`` from the SpaceTraders error body, if present."""
+    raw = getattr(exc, "body", None)
+    if raw is None:
+        raw = getattr(exc, "data", None)
+    try:
+        parsed = json.loads(raw) if isinstance(raw, (str, bytes)) else raw
+        message = parsed["error"]["message"]
+    except (ValueError, TypeError, KeyError):
+        return None
+    return message if isinstance(message, str) and message.strip() else None
 def _classify_exception(exc: BaseException) -> FailureOutcome:
     """Translate a generated-client exception into a normalized failure."""
     if _looks_like_timeout(exc):
@@ -259,7 +271,11 @@ def _classify_exception(exc: BaseException) -> FailureOutcome:
 
     status = _status_of_exception(exc)
     if status == 401:
-        return FailureOutcome(kind="authentication", status=401)
+        return FailureOutcome(
+            kind="authentication",
+            status=401,
+            detail=_upstream_message(exc),
+        )
     return FailureOutcome(kind="upstream", status=status)
 
 

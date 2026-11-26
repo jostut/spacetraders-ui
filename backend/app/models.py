@@ -36,6 +36,8 @@ class ErrorBody(BaseModel):
 
     kind: ErrorKind
     message: str
+    # Upstream SpaceTraders explanation for authentication failures, if any.
+    detail: Optional[str] = None
 
 
 class ErrorEnvelope(BaseModel):

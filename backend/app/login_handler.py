@@ -20,7 +20,7 @@ from __future__ import annotations
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 
-from app.classify_error import classify_error
+from app.classify_error import classify_error, upstream_detail
 from app.generated_client_adapter import fetch_agent
 from app.map_agent import map_agent
 from app.models import AgentDetails, ErrorBody, ErrorEnvelope, LoginRequest
@@ -45,5 +45,10 @@ async def login(body: LoginRequest) -> JSONResponse:
         return JSONResponse(status_code=200, content=agent.model_dump())
 
     status, kind, message = classify_error(outcome, body.token)
-    envelope = ErrorEnvelope(error=ErrorBody(kind=kind, message=message))
-    return JSONResponse(status_code=status, content=envelope.model_dump())
+    envelope = ErrorEnvelope(error=ErrorBody(
+            kind=kind,
+            message=message,
+            detail=upstream_detail(outcome, body.token),
+        )
+    )
+    return JSONResponse(status_code=status, content=envelope.model_dump(exclude_none=True))
