@@ -1,0 +1,30 @@
+$kind: http-example
+name: '401 Invalid Token'
+order: 2000
+request:
+  url: '{{base_url}}/api/login'
+  method: POST
+  headers:
+    - key: Content-Type
+      value: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "token": "invalid-or-expired-token"
+      }
+response:
+  statusCode: 401
+  statusText: Unauthorized
+  headers:
+    - key: Content-Type
+      value: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "error": {
+          "kind": "authentication",
+          "message": "Authentication failed: the SpaceTraders API rejected the token."
+        }
+      }

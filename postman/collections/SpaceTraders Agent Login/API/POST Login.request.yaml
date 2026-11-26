@@ -1,0 +1,60 @@
+$kind: http-request
+name: 'POST Login'
+method: POST
+url: '{{base_url}}/api/login'
+order: 1000
+headers:
+  - key: Content-Type
+    value: application/json
+body:
+  type: json
+  content: |-
+    {
+      "token": "{{agent_token}}"
+    }
+examples: './.resources/POST Login.resources/examples'
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      const code = pm.response.code;
+
+      if (code === 200) {
+        pm.test("200 – agent details returned", function () {
+          pm.response.to.have.status(200);
+          const json = pm.response.json();
+          pm.expect(json).to.have.property("shipCount");
+          pm.expect(json.shipCount).to.be.a("number").and.to.be.at.least(0);
+        });
+
+        pm.test("200 – no error envelope present", function () {
+          const json = pm.response.json();
+          pm.expect(json).to.not.have.property("error");
+        });
+
+        // Persist agent symbol for downstream use
+        pm.test("200 – store agent symbol in variable", function () {
+          const json = pm.response.json();
+          if (json.symbol) {
+            pm.collectionVariables.set("agent_symbol", json.symbol);
+          }
+        });
+
+      } else {
+        pm.test("Error – response has error envelope", function () {
+          pm.expect([401, 502, 504]).to.include(code);
+          const json = pm.response.json();
+          pm.expect(json).to.have.property("error");
+          pm.expect(json.error).to.have.property("kind");
+          pm.expect(json.error).to.have.property("message");
+          pm.expect(["authentication", "timeout", "upstream"]).to.include(json.error.kind);
+        });
+
+        pm.test("Error – message does not contain token", function () {
+          const token = pm.collectionVariables.get("agent_token") ||
+                        pm.environment.get("agent_token") || "";
+          if (token) {
+            pm.expect(pm.response.text()).to.not.include(token);
+          }
+        });
+      }

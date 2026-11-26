@@ -1,0 +1,22 @@
+$kind: http-request
+name: 'GET Health'
+method: GET
+url: '{{base_url}}/health'
+order: 1000
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Status code is 200", function () {
+        pm.response.to.have.status(200);
+      });
+
+      pm.test("Response body has status ok", function () {
+        const json = pm.response.json();
+        pm.expect(json).to.have.property("status");
+        pm.expect(json.status).to.equal("ok");
+      });
+
+      pm.test("Response time is under 500ms", function () {
+        pm.expect(pm.response.responseTime).to.be.below(500);
+      });

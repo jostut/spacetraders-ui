@@ -1,0 +1,3 @@
+$kind: collection
+name: API
+description: 'Core API endpoints — login and authentication flow.'

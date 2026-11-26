@@ -1,0 +1,10 @@
+name: Local Development
+values:
+  - key: base_url
+    value: 'http://127.0.0.1:8000'
+    description: 'Base URL of the locally running FastAPI backend (make run / scripts/run.ps1)'
+    enabled: true
+  - key: agent_token
+    value: ''
+    description: 'Your SpaceTraders API bearer token — paste it here before sending requests'
+    enabled: true

@@ -1,0 +1,30 @@
+$kind: http-example
+name: '502 Upstream Error'
+order: 3000
+request:
+  url: '{{base_url}}/api/login'
+  method: POST
+  headers:
+    - key: Content-Type
+      value: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.example-valid-token"
+      }
+response:
+  statusCode: 502
+  statusText: Bad Gateway
+  headers:
+    - key: Content-Type
+      value: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "error": {
+          "kind": "upstream",
+          "message": "The SpaceTraders API returned an error."
+        }
+      }

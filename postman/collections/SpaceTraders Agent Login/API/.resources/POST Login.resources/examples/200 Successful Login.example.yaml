@@ -1,0 +1,32 @@
+$kind: http-example
+name: '200 Successful Login'
+order: 1000
+request:
+  url: '{{base_url}}/api/login'
+  method: POST
+  headers:
+    - key: Content-Type
+      value: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.example-valid-token"
+      }
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    - key: Content-Type
+      value: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "accountId": "clxi5np2f0001s60dj1234567",
+        "symbol": "COSMIC_TRADER",
+        "headquarters": "X1-DF55-20250Z",
+        "credits": 150000,
+        "startingFaction": "COSMIC",
+        "shipCount": 3
+      }
