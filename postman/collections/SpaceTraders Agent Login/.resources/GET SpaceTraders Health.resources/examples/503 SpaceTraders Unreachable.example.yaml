@@ -1,0 +1,18 @@
+$kind: http-example
+name: '503 SpaceTraders Unreachable'
+order: 2000
+request:
+  url: '{{base_url}}/health/spacetraders'
+  method: GET
+response:
+  statusCode: 503
+  statusText: Service Unavailable
+  headers:
+    - key: Content-Type
+      value: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "status": "error"
+      }

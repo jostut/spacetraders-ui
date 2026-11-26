@@ -1,0 +1,21 @@
+$kind: http-example
+name: '504 Timeout'
+order: 4000
+request:
+  url: '{{base_url}}/api/systems/X1-DF55/waypoints/X1-DF55-20250Z'
+  method: GET
+response:
+  statusCode: 504
+  statusText: Gateway Timeout
+  headers:
+    - key: Content-Type
+      value: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "error": {
+          "kind": "timeout",
+          "message": "The SpaceTraders service took too long to respond."
+        }
+      }

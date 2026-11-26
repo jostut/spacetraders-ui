@@ -1,0 +1,21 @@
+$kind: http-example
+name: '502 Upstream Error'
+order: 3000
+request:
+  url: '{{base_url}}/api/systems/X1-DF55/waypoints/X1-DF55-20250Z'
+  method: GET
+response:
+  statusCode: 502
+  statusText: Bad Gateway
+  headers:
+    - key: Content-Type
+      value: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "error": {
+          "kind": "upstream",
+          "message": "The SpaceTraders service could not be reached."
+        }
+      }

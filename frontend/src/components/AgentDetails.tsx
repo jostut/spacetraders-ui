@@ -5,6 +5,8 @@ import { fieldOrPlaceholder } from '../logic/fieldOrPlaceholder';
 export interface AgentDetailsProps {
   agent: AgentDetailsModel;
   onLogout(): void;
+  /** Called with the headquarters symbol when its button is activated. */
+  onSelectHeadquarters?(headquarters: string): void;
 }
 
 /**
@@ -18,7 +20,11 @@ export interface AgentDetailsProps {
  * credits may be null, the placeholder semantics are applied first and the
  * formatter runs only when a value is present.
  */
-export function AgentDetails({ agent, onLogout }: AgentDetailsProps) {
+export function AgentDetails({
+  agent,
+  onLogout,
+  onSelectHeadquarters,
+}: AgentDetailsProps) {
   const creditsDisplay =
     agent.credits === null || agent.credits === undefined
       ? fieldOrPlaceholder(agent.credits)
@@ -37,7 +43,18 @@ export function AgentDetails({ agent, onLogout }: AgentDetailsProps) {
         </div>
         <div>
           <dt>Headquarters</dt>
-          <dd>{fieldOrPlaceholder(agent.headquarters)}</dd>
+          <dd>
+            {agent.headquarters === null || agent.headquarters === undefined ? (
+              fieldOrPlaceholder(agent.headquarters)
+            ) : (
+              <button
+                type="button"
+                onClick={() => onSelectHeadquarters?.(agent.headquarters as string)}
+              >
+                {agent.headquarters}
+              </button>
+            )}
+          </dd>
         </div>
         <div>
           <dt>Credits</dt>

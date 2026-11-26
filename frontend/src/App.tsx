@@ -4,6 +4,39 @@ import { AgentDetails } from './components/AgentDetails';
 import { ErrorBanner } from './components/ErrorBanner';
 import { ConnectionStatus } from './components/ConnectionStatus';
 import { useHealthCheck } from './hooks/useHealthCheck';
+import { useLocation } from './hooks/useLocation';
+import { LocationPanel } from './components/LocationPanel';
+import type { AgentDetails as AgentDetailsModel } from './types';
+import './App.css';
+
+/**
+ * Two-column layout shown only while agent details are displayed. `useLocation`
+ * lives here so that logging out unmounts this component and clears all
+ * location state.
+ */
+function AgentWithLocation({
+  agent,
+  onLogout,
+}: {
+  agent: AgentDetailsModel;
+  onLogout(): void;
+}) {
+  const location = useLocation(agent.headquarters ?? null);
+  return (
+    <div className="agent-layout">
+      <div className="agent-layout__details">
+        <AgentDetails
+          agent={agent}
+          onLogout={onLogout}
+          onSelectHeadquarters={location.select}
+        />
+      </div>
+      <div className="agent-layout__panel">
+        <LocationPanel {...location} />
+      </div>
+    </div>
+  );
+}
 
 /**
  * App shell. Wires the `useLogin` hook to the UI components (task 7.7).
@@ -39,7 +72,7 @@ export function App() {
         <ErrorBanner error={login.error} onRetry={login.retry} />
       )}
       {showAgentDetails ? (
-        <AgentDetails agent={login.agent!} onLogout={login.logout} />
+        <AgentWithLocation agent={login.agent!} onLogout={login.logout} />
       ) : (
         <LoginForm login={login} />
       )}

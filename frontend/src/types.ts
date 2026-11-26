@@ -17,13 +17,45 @@ export interface LoginRequest {
 }
 
 export type LoginErrorKind =
-  | 'token-invalid'
-  | 'could-not-retrieve'
-  | 'service-unavailable';
+  | "token-invalid"
+  | "could-not-retrieve"
+  | "service-unavailable";
 
 export interface LoginError {
   kind: LoginErrorKind;
   message: string;
 }
 
-export type LoginStatus = 'idle' | 'loading' | 'success' | 'error';
+export type LoginStatus = "idle" | "loading" | "success" | "error";
+
+/**
+ * Shared data models for the location-details-panel feature.
+ * See location-details-panel design.md "Data Models".
+ */
+
+export interface WaypointSummary {
+  symbol: string;
+  type: string;
+  x: number;
+  y: number;
+}
+
+export interface WaypointDetail {
+  symbol: string;
+  type: string;
+  systemSymbol: string;
+  x: number;
+  y: number;
+  orbits: string | null;
+  orbitals: string[];
+  faction: string | null;
+  traits: { symbol: string; name: string }[];
+  modifiers: { symbol: string; name: string }[];
+  isUnderConstruction: boolean;
+}
+
+export type AsyncState<T> =
+  | { status: "idle" }
+  | { status: "loading" }
+  | { status: "success"; data: T }
+  | { status: "error"; message: string; notFound: boolean };

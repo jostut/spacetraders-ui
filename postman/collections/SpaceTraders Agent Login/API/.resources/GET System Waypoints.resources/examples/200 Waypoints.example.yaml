@@ -1,0 +1,21 @@
+$kind: http-example
+name: '200 Waypoints'
+order: 1000
+request:
+  url: '{{base_url}}/api/systems/X1-DF55/waypoints'
+  method: GET
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    - key: Content-Type
+      value: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "waypoints": [
+          { "symbol": "X1-DF55-20250Z", "type": "PLANET", "x": 5, "y": 20 },
+          { "symbol": "X1-DF55-A1", "type": "ASTEROID", "x": -12, "y": 7 }
+        ]
+      }

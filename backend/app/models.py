@@ -28,7 +28,39 @@ class AgentDetails(BaseModel):
     shipCount: int = 0  # always >= 0
 
 
-ErrorKind = Literal["authentication", "timeout", "upstream"]
+ErrorKind = Literal["authentication", "timeout", "upstream", "not_found"]
+
+
+class WaypointSummary(BaseModel):
+    """Compact waypoint shape used in system waypoint listings."""
+
+    symbol: str
+    type: str
+    x: int
+    y: int
+
+
+class NamedEntry(BaseModel):
+    """A ``{symbol, name}`` pair (used for traits and modifiers)."""
+
+    symbol: str
+    name: str
+
+
+class WaypointDetail(BaseModel):
+    """Full waypoint details returned by the waypoint detail endpoint."""
+
+    symbol: str
+    type: str
+    systemSymbol: str
+    x: int
+    y: int
+    orbits: Optional[str] = None
+    orbitals: list[str] = []
+    faction: Optional[str] = None
+    traits: list[NamedEntry] = []
+    modifiers: list[NamedEntry] = []
+    isUnderConstruction: bool = False
 
 
 class ErrorBody(BaseModel):

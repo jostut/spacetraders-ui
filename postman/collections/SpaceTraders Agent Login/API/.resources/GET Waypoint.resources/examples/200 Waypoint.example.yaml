@@ -1,0 +1,28 @@
+$kind: http-example
+name: '200 Waypoint'
+order: 1000
+request:
+  url: '{{base_url}}/api/systems/X1-DF55/waypoints/X1-DF55-20250Z'
+  method: GET
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    - key: Content-Type
+      value: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "symbol": "X1-DF55-20250Z",
+        "type": "PLANET",
+        "systemSymbol": "X1-DF55",
+        "x": 5,
+        "y": 20,
+        "orbits": null,
+        "orbitals": ["X1-DF55-20250Z-M1"],
+        "faction": "COSMIC",
+        "traits": [{ "symbol": "MARKETPLACE", "name": "Marketplace" }],
+        "modifiers": [],
+        "isUnderConstruction": false
+      }

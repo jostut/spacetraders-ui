@@ -1,0 +1,25 @@
+.agent-layout {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.agent-layout__details,
+.agent-layout__panel {
+  flex: 1 1 320px;
+  min-width: 0;
+}
+
+@media (max-width: 699px) {
+  .agent-layout {
+    flex-direction: column;
+  }
+
+  .agent-layout__details,
+  .agent-layout__panel {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+}

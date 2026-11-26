@@ -1,0 +1,408 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "1.1 Extend backend models": [
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795668869035
+      },
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795668875347
+      },
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795668981374
+      }
+    ],
+    "1.2 Implement the pure waypoint mapper": [
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795668869197
+      },
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795668985332
+      },
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795669006830
+      }
+    ],
+    "2.1 Implement the waypoint adapter": [
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795668869388
+      },
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795668875879
+      },
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795668981810
+      }
+    ],
+    "2.3 Write unit tests for the adapter": [
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795668869540
+      },
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795669009206
+      },
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795669045060
+      }
+    ],
+    "3.1 Implement the location handler and register it": [
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795668869684
+      },
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795669009705
+      },
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795669045478
+      }
+    ],
+    "3.4 Write unit tests for the routes": [
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795668869834
+      },
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795669047775
+      },
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795669083021
+      }
+    ],
+    "4. Checkpoint - Backend complete": [
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795668869996
+      },
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795669085158
+      },
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795669104104
+      }
+    ],
+    "5.1 Implement derivation logic and shared types": [
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795668870151
+      },
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795669106043
+      },
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795669128500
+      }
+    ],
+    "6.1 Implement the hook": [
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795668870297
+      },
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795669130740
+      },
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795669225783
+      }
+    ],
+    "6.4 Write unit tests for the hook": [
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795668870442
+      },
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795669287156
+      },
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795669342109
+      }
+    ],
+    "7.1 Implement `LocationPanel`": [
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795668870588
+      },
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795669230074
+      },
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795669283966
+      }
+    ],
+    "7.4 Write unit tests for `LocationPanel`": [
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795668870756
+      },
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795669287382
+      },
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795669341688
+      }
+    ],
+    "7.5 Make the headquarters a button in `AgentDetails`": [
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795668870915
+      },
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795669131393
+      },
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795669225243
+      }
+    ],
+    "7.6 Write unit tests for `AgentDetails`": [
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795668871070
+      },
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795669230792
+      },
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795669283693
+      }
+    ],
+    "8.1 Wire the panel into `App` and add layout CSS": [
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795668871219
+      },
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795669287630
+      },
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795669342970
+      }
+    ],
+    "8.2 Write unit and CSS smoke tests for the wiring": [
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795668871368
+      },
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795669345172
+      },
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795669408299
+      }
+    ],
+    "8.3 Write a Playwright end-to-end test": [
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795668871524
+      },
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795669346044
+      },
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795669407483
+      }
+    ],
+    "9. Final checkpoint - Ensure all tests pass": [
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795668871665
+      },
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795669410618
+      },
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795669466389
+      }
+    ],
+    "1. Backend models and waypoint mapping": [
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795669007039
+      }
+    ],
+    "2. Backend SpaceTraders waypoint adapter": [
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795669045217
+      }
+    ],
+    "3. Backend routes": [
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795669083213
+      }
+    ],
+    "5. Frontend system symbol derivation": [
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795669128648
+      }
+    ],
+    "7. Frontend components": [
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795669341883
+      }
+    ],
+    "6. Frontend `useLocation` hook": [
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795669342252
+      }
+    ],
+    "8. Layout and wiring": [
+      {
+        "executionId": "c9c72586-21a9-40e1-b81c-cc27e5db0736",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795669408447
+      }
+    ],
+    "7.7 Sort the Location_List alphabetically": [
+      {
+        "executionId": "348b1cf7-cb77-4e21-97e1-77c336f90c40",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795670532414
+      },
+      {
+        "executionId": "348b1cf7-cb77-4e21-97e1-77c336f90c40",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795670573609
+      }
+    ],
+    "7.9 Write unit tests for list ordering": [
+      {
+        "executionId": "348b1cf7-cb77-4e21-97e1-77c336f90c40",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795670575810
+      },
+      {
+        "executionId": "348b1cf7-cb77-4e21-97e1-77c336f90c40",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795670604850
+      }
+    ],
+    "7.10 Replace \"Back to locations\" with a breadcrumb": [
+      {
+        "executionId": "5890f638-dcb0-4fd7-b6b9-1f0f9af14211",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795671411519
+      },
+      {
+        "executionId": "5890f638-dcb0-4fd7-b6b9-1f0f9af14211",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795671445941
+      }
+    ],
+    "7.11 Update tests for the breadcrumb": [
+      {
+        "executionId": "5890f638-dcb0-4fd7-b6b9-1f0f9af14211",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795671448199
+      },
+      {
+        "executionId": "5890f638-dcb0-4fd7-b6b9-1f0f9af14211",
+        "chatSessionId": "sess_da13d52a-c278-4f98-9afb-8154631192c1",
+        "timestamp": 1795671601129
+      }
+    ]
+  }
+}

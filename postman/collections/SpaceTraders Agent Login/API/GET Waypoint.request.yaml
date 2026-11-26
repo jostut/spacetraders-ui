@@ -1,0 +1,34 @@
+$kind: http-request
+name: 'GET Waypoint'
+method: GET
+url: '{{base_url}}/api/systems/{{system_symbol}}/waypoints/{{waypoint_symbol}}'
+order: 3000
+examples: './.resources/GET Waypoint.resources/examples'
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      const code = pm.response.code;
+
+      if (code === 200) {
+        pm.test("200 - waypoint detail fields", function () {
+          const json = pm.response.json();
+          pm.expect(json).to.include.all.keys(
+            "symbol", "type", "systemSymbol", "x", "y",
+            "orbits", "orbitals", "faction", "traits", "modifiers", "isUnderConstruction"
+          );
+          pm.expect(json.orbitals).to.be.an("array");
+          pm.expect(json.traits).to.be.an("array");
+          pm.expect(json.modifiers).to.be.an("array");
+        });
+      } else {
+        pm.test("Error - expected status and error envelope", function () {
+          pm.expect([404, 422, 502, 504]).to.include(code);
+          if (code !== 422) {
+            const json = pm.response.json();
+            pm.expect(json.error).to.have.property("kind");
+            pm.expect(["not_found", "timeout", "upstream"]).to.include(json.error.kind);
+            pm.expect(json.error).to.have.property("message");
+          }
+        });
+      }

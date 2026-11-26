@@ -171,3 +171,58 @@ def test_login_writes_no_token_or_agent_data_to_durable_sinks(
     # The backend holds no module-level token/agent cache: the only reference to
     # the token lived in the handler's local request scope and is already gone.
     assert os.listdir(tmp_path) == []
+
+
+def test_location_routes_write_no_request_data_to_durable_sinks(
+    tmp_path: Path,
+    monkeypatch,
+    root_log_capture: _CapturingHandler,
+    write_open_spy: list[tuple[str, str]],
+    caplog,
+) -> None:
+    """Location routes (location_handler, waypoint adapter, map_waypoint) must
+    not log or persist request data (Requirements 7.3, 8.2, 10.2)."""
+    import app.location_handler as location_handler
+
+    monkeypatch.chdir(tmp_path)
+    system = "X1-DISTINCTIVESYS"
+    waypoint = "X1-DISTINCTIVESYS-ZZ99"
+    payload = {
+        "symbol": waypoint,
+        "type": "PLANET",
+        "systemSymbol": system,
+        "x": 1,
+        "y": 2,
+        "traits": [],
+        "modifiers": [],
+    }
+    monkeypatch.setattr(location_handler, "fetch_system_waypoints", lambda s: [payload])
+    monkeypatch.setattr(location_handler, "fetch_waypoint", lambda s, w: payload)
+    failure = location_handler.WaypointFailure(kind="not_found")
+
+    client = TestClient(app)
+    with caplog.at_level(logging.DEBUG):
+        assert client.get(f"/api/systems/{system}/waypoints").status_code == 200
+        assert client.get(f"/api/systems/{system}/waypoints/{waypoint}").status_code == 200
+        monkeypatch.setattr(location_handler, "fetch_waypoint", lambda s, w: failure)
+        assert client.get(f"/api/systems/{system}/waypoints/{waypoint}").status_code == 404
+
+    log_text = "\n".join(
+        root_log_capture.messages
+        + [rec.getMessage() for rec in caplog.records]
+        + [caplog.text]
+    )
+    # The TestClient's own httpx request log lines may echo URLs; only check
+    # records emitted by the app modules under test.
+    app_text = "\n".join(
+        rec.getMessage()
+        for rec in caplog.records
+        if rec.name.startswith("app.")
+    )
+    assert system not in app_text and waypoint not in app_text
+    assert not [
+        rec for rec in caplog.records if rec.name.startswith("app.")
+    ], "app modules emitted log records"
+    assert write_open_spy == []
+    assert os.listdir(tmp_path) == []
+    del log_text

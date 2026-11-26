@@ -1,0 +1,31 @@
+$kind: http-request
+name: 'GET System Waypoints'
+method: GET
+url: '{{base_url}}/api/systems/{{system_symbol}}/waypoints'
+order: 2000
+examples: './.resources/GET System Waypoints.resources/examples'
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      const code = pm.response.code;
+
+      if (code === 200) {
+        pm.test("200 - waypoints array of summaries", function () {
+          const json = pm.response.json();
+          pm.expect(json).to.have.property("waypoints").that.is.an("array");
+          json.waypoints.forEach(function (w) {
+            pm.expect(w).to.have.all.keys("symbol", "type", "x", "y");
+          });
+        });
+      } else {
+        pm.test("Error - expected status and error envelope", function () {
+          pm.expect([404, 422, 502, 504]).to.include(code);
+          if (code !== 422) {
+            const json = pm.response.json();
+            pm.expect(json.error).to.have.property("kind");
+            pm.expect(["not_found", "timeout", "upstream"]).to.include(json.error.kind);
+            pm.expect(json.error).to.have.property("message");
+          }
+        });
+      }

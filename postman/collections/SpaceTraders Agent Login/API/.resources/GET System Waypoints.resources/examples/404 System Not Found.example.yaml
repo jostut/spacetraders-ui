@@ -1,0 +1,21 @@
+$kind: http-example
+name: '404 System Not Found'
+order: 2000
+request:
+  url: '{{base_url}}/api/systems/X1-ZZ99/waypoints'
+  method: GET
+response:
+  statusCode: 404
+  statusText: Not Found
+  headers:
+    - key: Content-Type
+      value: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "error": {
+          "kind": "not_found",
+          "message": "The requested location was not found."
+        }
+      }

@@ -6,3 +6,9 @@ values:
   - key: agent_token
     value: '{{vault:json_web_token_1dkw}}'
     description: Your SpaceTraders API bearer token — paste it here before sending requests
+  - key: system_symbol
+    value: 'X1-DF55'
+    description: System symbol used by the waypoint requests (first two segments of a waypoint symbol)
+  - key: waypoint_symbol
+    value: 'X1-DF55-20250Z'
+    description: Waypoint symbol used by GET Waypoint (for example your agent headquarters)

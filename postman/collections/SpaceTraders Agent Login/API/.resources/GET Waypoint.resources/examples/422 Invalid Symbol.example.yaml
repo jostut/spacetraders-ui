@@ -1,0 +1,24 @@
+$kind: http-example
+name: '422 Invalid Symbol'
+order: 5000
+request:
+  url: '{{base_url}}/api/systems/X1-DF55/waypoints/bad'
+  method: GET
+response:
+  statusCode: 422
+  statusText: Unprocessable Entity
+  headers:
+    - key: Content-Type
+      value: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "detail": [
+          {
+            "type": "string_pattern_mismatch",
+            "loc": ["path", "waypointSymbol"],
+            "msg": "String should match pattern '^[A-Za-z0-9]+-[A-Za-z0-9]+-[A-Za-z0-9]+$'"
+          }
+        ]
+      }
